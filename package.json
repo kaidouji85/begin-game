@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run start:02",
+    "start": "npm run start:04",
     "start:01": "parcel src/01-view-player/index.html",
     "start:02": "parcel src/02-move-player/index.html",
-    "start:03": "parcel src/03-use-tween/index.html"
+    "start:03": "parcel src/03-use-tween/index.html",
+    "start:04": "parcel src/04-player-sprite/index.html"
   },
   "author": "y.takeuchi",
   "license": "ISC",
