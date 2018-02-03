@@ -2,10 +2,12 @@ import {Player} from './player';
 
 window.onload = function() {
   const playerSprite = new Player();
-  playerSprite.getDomList().forEach(v => {
-    document.body.appendChild(v);
-  });
-  playerSprite.move().start();
+  playerSprite
+    .getDomList()
+    .forEach(v => document.body.appendChild(v));
+  playerSprite
+    .move()
+    .start();
 
   function gameLoop(time) {
     requestAnimationFrame(gameLoop);
