@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run start:02",
     "start:01": "parcel src/01-view-player/index.html",
-    "start:02": "parcel src/02-move-player/index.html"
+    "start:02": "parcel src/02-move-player/index.html",
+    "start:03": "parcel src/03-use-tween/index.html"
   },
   "author": "y.takeuchi",
   "license": "ISC",
