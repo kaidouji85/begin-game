@@ -1,10 +1,11 @@
-import {Player} from './player';
+import {Player} from './player/player';
 
 window.onload = function() {
   const playerSprite = new Player();
   playerSprite
-    .getDomList()
+    .getDOMList()
     .forEach(v => document.body.appendChild(v));
+  //console.log(playerSprite.getDOMList())
   playerSprite
     .move()
     .start();
