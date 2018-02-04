@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run start:04",
-    "start:01": "parcel src/01-view-player/index.html",
-    "start:02": "parcel src/02-move-player/index.html",
-    "start:03": "parcel src/03-use-tween/index.html",
-    "start:04": "parcel src/04-player-sprite/index.html"
+    "start:01": "parcel src/01-view-player/index.html -d dist/01-view-player --public-url '.'",
+    "start:02": "parcel src/02-move-player/index.html -d dist/02-move-player  --public-url '.'",
+    "start:03": "parcel src/03-use-tween/index.html -d dist/03-use-tween  --public-url '.'",
+    "start:04": "parcel src/04-player-sprite/index.html -d dist/04-player-sprite  --public-url '.'"
   },
   "author": "y.takeuchi",
   "license": "ISC",
