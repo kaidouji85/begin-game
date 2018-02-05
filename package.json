@@ -8,18 +8,20 @@
     "start:01": "parcel src/01-move-player/index.html",
     "start:02": "parcel src/02-use-tween/index.html",
     "clean": "npm-run-all clean:build clean:dist",
-    "clean:build":"rimraf build",
+    "clean:build": "rimraf build",
     "clean:dist": "rimraf dist",
     "build": "npm-run-all build:01 build:02",
     "build:01": "parcel build src/01-move-player/index.html -d build/01-move-player --public-url '.'",
     "build:02": "parcel build src/02-use-tween/index.html -d build/02-use-tween --public-url '.'",
+    "upload-s3": "s3-upload"
   },
   "author": "y.takeuchi",
   "license": "ISC",
   "devDependencies": {
     "npm-run-all": "^4.1.2",
     "parcel-bundler": "^1.5.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "s3-upload": "^0.1.0"
   },
   "dependencies": {
     "@tweenjs/tween.js": "^17.2.0"
