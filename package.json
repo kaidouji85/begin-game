@@ -5,18 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run start:04",
-    "start:01": "parcel src/01-view-player/index.html",
-    "start:02": "parcel src/02-move-player/index.html",
-    "start:03": "parcel src/03-use-tween/index.html",
-    "start:04": "parcel src/04-player-sprite/index.html",
-    "build:01": "parcel build src/01-view-player/index.html -d build/01-view-player --public-url '.'",
-    "build:02": "parcel build src/02-move-player/index.html -d build/02-move-player --public-url '.'",
-    "build:03": "parcel build src/03-use-tween/index.html -d build/03-use-tween --public-url '.'",
-    "build:04": "parcel build src/04-player-sprite/index.html -d build/04-player-sprite --public-url '.'"
+    "start:01": "parcel src/01-move-player/index.html",
+    "start:02": "parcel src/02-use-tween/index.html",
+    "build": "npm-run-all build:01 build:02",
+    "build:01": "parcel build src/01-move-player/index.html -d build/01-move-player --public-url '.'",
+    "build:02": "parcel build src/02-use-tween/index.html -d build/02-use-tween --public-url '.'"
   },
   "author": "y.takeuchi",
   "license": "ISC",
   "devDependencies": {
+    "npm-run-all": "^4.1.2",
     "parcel-bundler": "^1.5.1"
   },
   "dependencies": {
