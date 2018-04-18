@@ -9,6 +9,6 @@ requestAnimationFrame(gameLoop);
 
 function setPlayerPosition({x, y}) {
   const playerImg = document.querySelector('.player');
-  const transform = `translate(${x}px, ${y}px) scale(-1, 1)`;
+  const transform = `translate(${x}px, ${y}px)`;
   playerImg.style.setProperty('transform', transform);
 }
