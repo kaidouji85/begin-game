@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run start:04",
     "start:01": "parcel src/01-move-player/index.html",
-    "start:02": "parcel src/02-use-tween/index.html",
+    "start:02": "parcel src/02-operate-player/index.html",
     "clean": "npm-run-all clean:build clean:dist",
     "clean:build": "rimraf build",
     "clean:dist": "rimraf dist",

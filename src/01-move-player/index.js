@@ -1,4 +1,4 @@
-const playerPos = {x: 0, y: 128};
+let playerPos = {x: 0, y: 128};
 
 function gameLoop(time) {
   requestAnimationFrame(gameLoop);
