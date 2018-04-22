@@ -1,0 +1,7 @@
+.player {
+    transform-style:flat;
+    width: 256px;
+    height: 256px;
+    user-select: none;
+    -webkit-user-drag: none;
+}
