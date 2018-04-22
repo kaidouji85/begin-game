@@ -24,6 +24,18 @@ function move(tx, ty) {
   playerPos.y += vy / scala * speed;
 }
 
+// 敵関連
+const ENEMY_SPEED = 4;
+let enemyPos = {x: window.innerWidth - 256, y: 128};
+
+function setEnemyPos({x, y}) {
+  const enemyImg = document.querySelector('.enemy');
+  const ex = x - enemyImg.clientWidth / 2;
+  const ey = y - enemyImg.clientHeight / 2;
+  const transform = `translate(${ex}px, ${ey}px)`;
+  enemyImg.style.setProperty('transform', transform);
+}
+
 // タッチ関連
 let touchInfo = {
   isTouch: false,
@@ -47,9 +59,13 @@ document.addEventListener('mouseup', e => {
 // ゲームループ関連
 function gameLoop(time) {
   requestAnimationFrame(gameLoop);
+
   if (touchInfo.isTouch) {
     move(touchInfo.event.clientX, touchInfo.event.clientY);
   }
   setPlayerPosition(playerPos);
+
+  enemyPos.x -= ENEMY_SPEED;
+  setEnemyPos(enemyPos);
 }
 requestAnimationFrame(gameLoop);
