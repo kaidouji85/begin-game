@@ -2,6 +2,6 @@
     transform-style:flat;
     width: 256px;
     height: 256px;
-    user-select: none;
-    -webkit-user-drag: none;
+    background-image: url(./player.png);
+    background-size: 256px;
 }
