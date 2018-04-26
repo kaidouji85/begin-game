@@ -11,6 +11,7 @@
     "start:04": "parcel src/04-refactor-move/index.html",
     "start:05": "parcel src/05-enemy/index.html",
     "start:06": "parcel src/06-collision/index.html",
+    "start:07": "parcel src/07-refactor-death/index.html",
     "clean": "npm-run-all clean:build clean:dist",
     "clean:build": "rimraf build",
     "clean:dist": "rimraf dist",
@@ -21,6 +22,7 @@
     "build:04": "parcel build src/04-refactor-move/index.html -d build/04-refactor-move --public-url '.'",
     "build:05": "parcel build src/05-enemy/index.html -d build/05-enemy --public-url '.'",
     "build:06": "parcel build src/06-collision/index.html -d build/06-collision --public-url '.'",
+    "build:07": "parcel build src/07-refactor-death/index.html -d build/07-refactor-death --public-url '.'",
     "upload-s3": "s3-upload"
   },
   "author": "y.takeuchi",
