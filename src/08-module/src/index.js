@@ -1,7 +1,5 @@
 // ベクトル関係
-function getScala(vx, vy) {
-  return Math.sqrt(vx ** 2 + vy ** 2);
-}
+import {getScala} from "./vector/scala";
 
 // プレイヤー関連
 const PLAYER_SPEED = 8;
