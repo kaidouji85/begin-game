@@ -3,7 +3,7 @@
     transform-style:flat;
     width: 256px;
     height: 256px;
-    background-image: url(./player.png);
+    background-image: url(../resource/player.png);
     background-size: 256px;
 }
 
@@ -12,6 +12,6 @@
     transform-style:flat;
     width: 256px;
     height: 256px;
-    background-image: url(./enemy.png);
+    background-image: url(../resource/enemy.png);
     background-size: 256px;
 }
