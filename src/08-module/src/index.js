@@ -1,46 +1,8 @@
 // ベクトル関係
 import {getScala} from "./vector/scala";
+import {Player} from "./player";
 
-// プレイヤー関連
-const PLAYER_SPEED = 8;
-let playerInfo = {
-  x: 128,
-  y: 128,
-  isDeath: false
-};
-
-function playerGameLoop() {
-  if (!playerInfo.isDeath && touchInfo.isTouch) {
-    move(touchInfo.event.clientX, touchInfo.event.clientY);
-  }
-
-  engagePlayerInfo();
-}
-
-function engagePlayerInfo() {
-  const playerImg = document.querySelector('.player');
-  const px = playerInfo.x - playerImg.clientWidth / 2;
-  const py = playerInfo.y - playerImg.clientHeight / 2;
-  const transform = `translate(${px}px, ${py}px)`;
-  const visibility = playerInfo.isDeath ? 'hidden' : 'visible';
-
-  playerImg.style.setProperty('transform', transform);
-  playerImg.style.setProperty('visibility', visibility);
-}
-
-function move(tx, ty) {
-  const vx = tx - playerInfo.x;
-  const vy = ty - playerInfo.y;
-  const scala = getScala(vx, vy);
-
-  if (scala <= 0) {
-    return;
-  }
-
-  const speed = scala < PLAYER_SPEED ? scala : PLAYER_SPEED;
-  playerInfo.x += vx / scala * speed;
-  playerInfo.y += vy / scala * speed;
-}
+const player = new Player();
 
 // 敵関連
 const ENEMY_SPEED = 4;
@@ -87,12 +49,12 @@ document.addEventListener('mouseup', e => {
 function gameLoop(time) {
   requestAnimationFrame(gameLoop);
 
-  if (!playerInfo.isDeath && isOverlap(playerInfo, enemyPos)) {
-    playerInfo.isDeath = true;
+  if (!player.isDeath && isOverlap(player, enemyPos)) {
+    player.isDeath = true;
     alert('ゲームオーバー');
   }
 
-  playerGameLoop();
+  player.gameLoop(touchInfo);
 
   enemyPos.x -= ENEMY_SPEED;
   setEnemyPos(enemyPos);
