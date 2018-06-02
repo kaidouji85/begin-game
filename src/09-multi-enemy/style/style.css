@@ -1,0 +1,17 @@
+.player {
+    position: absolute;
+    transform-style:flat;
+    width: 256px;
+    height: 256px;
+    background-image: url(../resource/player.png);
+    background-size: 256px;
+}
+
+.enemy {
+    position: absolute;
+    transform-style:flat;
+    width: 256px;
+    height: 256px;
+    background-image: url(../resource/enemy.png);
+    background-size: 256px;
+}
