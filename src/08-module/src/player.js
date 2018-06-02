@@ -2,6 +2,7 @@ import {getScala} from "./vector/scala";
 
 export const PLAYER_SPEED = 8;
 
+/** プレイヤー */
 export class Player {
   constructor() {
     this.x = 128;

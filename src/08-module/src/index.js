@@ -1,20 +1,10 @@
 // ベクトル関係
 import {getScala} from "./vector/scala";
 import {Player} from "./player";
+import {Enemy} from './enemy';
 
 const player = new Player();
-
-// 敵関連
-const ENEMY_SPEED = 4;
-let enemyPos = {x: window.innerWidth - 256, y: 128};
-
-function setEnemyPos({x, y}) {
-  const enemyImg = document.querySelector('.enemy');
-  const ex = x - enemyImg.clientWidth / 2;
-  const ey = y - enemyImg.clientHeight / 2;
-  const transform = `translate(${ex}px, ${ey}px)`;
-  enemyImg.style.setProperty('transform', transform);
-}
+const enemy = new Enemy(window.innerWidth - 256, 128);
 
 // 当たり判定関連
 function isOverlap(player, enemy) {
@@ -49,14 +39,12 @@ document.addEventListener('mouseup', e => {
 function gameLoop(time) {
   requestAnimationFrame(gameLoop);
 
-  if (!player.isDeath && isOverlap(player, enemyPos)) {
+  if (!player.isDeath && isOverlap(player, enemy)) {
     player.isDeath = true;
     alert('ゲームオーバー');
   }
 
   player.gameLoop(touchInfo);
-
-  enemyPos.x -= ENEMY_SPEED;
-  setEnemyPos(enemyPos);
+  enemy.gameLoop();
 }
 requestAnimationFrame(gameLoop);
