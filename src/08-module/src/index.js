@@ -1,10 +1,12 @@
 // ベクトル関係
 import {getScala} from "./vector/scala";
-import {Player} from "./player";
-import {Enemy} from './enemy';
+import {Player} from "./sprite/player";
+import {Enemy} from './sprite/enemy';
+import {TouchInfo} from "./touch/touch-info";
 
 const player = new Player();
 const enemy = new Enemy(window.innerWidth - 256, 128);
+const touchInfo = new TouchInfo();
 
 // 当たり判定関連
 function isOverlap(player, enemy) {
@@ -14,26 +16,6 @@ function isOverlap(player, enemy) {
 
   return distance <= 126;
 }
-
-// タッチ関連
-let touchInfo = {
-  isTouch: false,
-  event: null
-};
-
-document.addEventListener('mousedown', e => {
-  touchInfo.isTouch = true;
-  touchInfo.event = e;
-});
-
-document.addEventListener('mousemove', e => {
-  touchInfo.event = e;
-});
-
-document.addEventListener('mouseup', e => {
-  touchInfo.isTouch = false;
-  touchInfo.event = e;
-});
 
 // ゲームループ関連
 function gameLoop(time) {

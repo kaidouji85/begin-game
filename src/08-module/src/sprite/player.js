@@ -1,4 +1,4 @@
-import {getScala} from "./vector/scala";
+import {getScala} from "../vector/scala";
 
 export const PLAYER_SPEED = 8;
 
