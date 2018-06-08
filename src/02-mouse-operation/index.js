@@ -23,7 +23,6 @@ function gameLoop(time) {
   requestAnimationFrame(gameLoop);
   if (isTouch) {
     playerPos.x += 4;
-
   }
   setPlayerPosition(playerPos);
 }
