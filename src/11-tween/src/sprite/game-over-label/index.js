@@ -1,21 +1,16 @@
 import {Group, Tween} from '@tweenjs/tween.js';
+import {GameOverLabelView} from './view';
 
 export class GameOverLabel {
   constructor() {
     this.opacity = 0;
     this.tweenGroup = new Group();
-    this.gameOverLabel = document.createElement('div');
-    this.gameOverLabel.setAttribute('class', 'game-over');
-    document.body.appendChild(this.gameOverLabel);
+    this.view = new GameOverLabelView();
   }
 
   gameLoop(time) {
     this.tweenGroup.update(time);
-    this.engage();
-  }
-
-  engage() {
-    this.gameOverLabel.style.setProperty('opacity', this.opacity);
+    this.view.engage(this);
   }
 
   visible() {
