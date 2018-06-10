@@ -1,5 +1,6 @@
 import {Tween, Group} from "@tweenjs/tween.js";
-import {getScala} from '../vector/scala';
+import {getScala} from '../../vector/scala';
+import {PlayerView} from "./view";
 
 export const PLAYER_SPEED = 2;
 
@@ -12,10 +13,7 @@ export class Player {
     this.isDeath = false;
     this.moveTween = new Group();
     this.deathAnimationTween = new Group();
-
-    this.element = document.createElement('div');
-    this.element.setAttribute('class', 'player');
-    document.body.appendChild(this.element);
+    this.view = new PlayerView();
   }
 
   gameLoop(time, touchInfo) {
@@ -26,8 +24,8 @@ export class Player {
     if (!this.isDeath && touchInfo.isTouch) {
       this._move(touchInfo.event.clientX, touchInfo.event.clientY);
     }
-
-    this._engage();
+    
+    this.view.engage(this);
   }
 
   deathAnimation() {
