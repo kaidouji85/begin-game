@@ -3,7 +3,6 @@ import {EnemyView} from "./view";
 
 export const ENEMY_SPEED = 4;
 
-
 /** 敵 */
 export class Enemy {
   constructor(x, y) {

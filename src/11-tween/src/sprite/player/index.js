@@ -1,8 +1,7 @@
 import {Tween, Group} from "@tweenjs/tween.js";
-import {getScala} from '../../vector/scala';
 import {PlayerView} from "./view";
-
-export const PLAYER_SPEED = 2;
+import {move} from './move';
+import {death} from "./death";
 
 /** プレイヤー */
 export class Player {
@@ -29,26 +28,12 @@ export class Player {
   }
 
   deathAnimation() {
-    const tween = new Tween(this, this.deathAnimationTween);
-    tween.to({opacity: 0}, 300);
+    const tween = death(this, this.deathAnimationTween);
     tween.start();
   }
 
-  _engage() {
-    const playerImg = this.element;
-    const px = this.x - playerImg.clientWidth / 2;
-    const py = this.y - playerImg.clientHeight / 2;
-    const transform = `translate(${px}px, ${py}px)`;
-
-    playerImg.style.setProperty('transform', transform);
-    playerImg.style.setProperty('opacity', this.opacity);
-  }
-
   _move(targetX, targetY) {
-    const scala = getScala(this.x - targetX, this.y - targetY);
-    const duration = scala * PLAYER_SPEED;
-    const tween = new Tween(this, this.moveTween);
-    tween.to({x: targetX, y: targetY}, duration);
+    const tween = move(this, this.moveTween, targetX, targetY);
     tween.start();
   }
 }
