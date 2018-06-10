@@ -15,28 +15,15 @@
     "start:08": "parcel src/08-module/index.html",
     "start:09": "parcel src/09-multi-enemy/index.html",
     "start:10": "parcel src/10-enemy-container/index.html",
-    "clean": "npm-run-all clean:build clean:dist",
-    "clean:build": "rimraf build",
-    "clean:dist": "rimraf dist",
-    "build": "npm-run-all build:01 build:02",
-    "build:01": "parcel build src/01-game-loop/index.html -d build/01-game-loop --public-url '.'",
-    "build:02": "parcel build src/02-mouse-operation/index.html -d build/02-mouse-operation --public-url '.'",
-    "build:03": "parcel build src/03-free-movement/index.html -d build/03-free-movement --public-url '.'",
-    "build:04": "parcel build src/04-refactor-move/index.html -d build/04-refactor-move --public-url '.'",
-    "build:05": "parcel build src/05-enemy/index.html -d build/05-enemy --public-url '.'",
-    "build:06": "parcel build src/06-collision/index.html -d build/06-collision --public-url '.'",
-    "build:07": "parcel build src/07-refactor-death/index.html -d build/07-refactor-death --public-url '.'",
-    "build:08": "parcel build src/08-module/index.html -d build/08-module --public-url '.'",
-    "build:09": "parcel build src/09-multi-enemy/index.html -d build/09-multi-enemy --public-url '.'",
-    "build:10": "parcel build src/10-enemy-container/index.html -d build/10-enemy-container --public-url '.'",
-    "upload-s3": "s3-upload"
+    "clean": "npm-run-all clean:cache clean:dist",
+    "clean:cache": "rimraf .cache",
+    "clean:dist": "rimraf dist"
   },
   "author": "y.takeuchi",
   "license": "ISC",
   "devDependencies": {
     "npm-run-all": "^4.1.2",
     "parcel-bundler": "^1.5.1",
-    "rimraf": "^2.6.2",
-    "s3-upload": "^0.1.0"
+    "rimraf": "^2.6.2"
   }
 }

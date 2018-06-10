@@ -2,7 +2,3 @@ node_modules
 .idea/
 .cache/
 dist/
-build/
-aws-credentials.json
-aws-upload.conf.js
-
