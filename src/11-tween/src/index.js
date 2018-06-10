@@ -13,7 +13,7 @@ function gameLoop(time) {
 
   if (!player.isDeath && enemyContainer.isOverlap(player)) {
     player.isDeath = true;
-    alert('ゲームオーバー');
+    player.deathAnimation();
   }
 
   player.gameLoop(time, touchInfo);

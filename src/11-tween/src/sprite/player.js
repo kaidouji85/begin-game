@@ -8,8 +8,10 @@ export class Player {
   constructor() {
     this.x = 128;
     this.y = 128;
+    this.opacity = 1;
     this.isDeath = false;
-    this.tweenGroup = new Group();
+    this.moveTween = new Group();
+    this.deathAnimationTween = new Group();
 
     this.element = document.createElement('div');
     this.element.setAttribute('class', 'player');
@@ -17,8 +19,9 @@ export class Player {
   }
 
   gameLoop(time, touchInfo) {
-    this.tweenGroup.update(time);
-    this.tweenGroup.removeAll();
+    this.moveTween.update(time);
+    this.moveTween.removeAll();
+    this.deathAnimationTween.update(time);
 
     if (!this.isDeath && touchInfo.isTouch) {
       this._move(touchInfo.event.clientX, touchInfo.event.clientY);
@@ -27,21 +30,26 @@ export class Player {
     this._engage();
   }
 
+  deathAnimation() {
+    const tween = new Tween(this, this.deathAnimationTween);
+    tween.to({opacity: 0}, 300);
+    tween.start();
+  }
+
   _engage() {
     const playerImg = this.element;
     const px = this.x - playerImg.clientWidth / 2;
     const py = this.y - playerImg.clientHeight / 2;
     const transform = `translate(${px}px, ${py}px)`;
-    const visibility = this.isDeath ? 'hidden' : 'visible';
 
     playerImg.style.setProperty('transform', transform);
-    playerImg.style.setProperty('visibility', visibility);
+    playerImg.style.setProperty('opacity', this.opacity);
   }
 
   _move(targetX, targetY) {
     const scala = getScala(this.x - targetX, this.y - targetY);
     const duration = scala * PLAYER_SPEED;
-    const tween = new Tween(this, this.tweenGroup);
+    const tween = new Tween(this, this.moveTween);
     tween.to({x: targetX, y: targetY}, duration);
     tween.start();
   }
