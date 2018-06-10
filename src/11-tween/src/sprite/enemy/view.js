@@ -6,8 +6,8 @@ export class EnemyView {
   }
 
   engage({x, y}) {
-    const ex = this.x - this.enemyImg.clientWidth / 2;
-    const ey = this.y - this.enemyImg.clientHeight / 2;
+    const ex = x - this.enemyImg.clientWidth / 2;
+    const ey = y - this.enemyImg.clientHeight / 2;
     const transform = `translate(${ex}px, ${ey}px)`;
     this.enemyImg.style.setProperty('transform', transform);
   }

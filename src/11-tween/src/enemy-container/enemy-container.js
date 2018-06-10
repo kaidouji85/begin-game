@@ -1,4 +1,4 @@
-import {Enemy} from "../../../09-multi-enemy/src/sprite/enemy";
+import {Enemy} from "../sprite/enemy/index";
 import {isOverlap} from "../overlap/is-overlap";
 
 /** 敵を集めたもの */
