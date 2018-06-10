@@ -24,7 +24,7 @@ export class Player {
     if (!this.isDeath && touchInfo.isTouch) {
       this._move(touchInfo.event.clientX, touchInfo.event.clientY);
     }
-    
+
     this.view.engage(this);
   }
 
