@@ -17,6 +17,6 @@ function gameLoop(time) {
   }
 
   player.gameLoop(time, touchInfo);
-  enemyContainer.gameLoop();
+  enemyContainer.gameLoop(time);
 }
 requestAnimationFrame(gameLoop);

@@ -15,9 +15,9 @@ export class EnemyContainer {
     return this._enemyList.some(enemy => isOverlap(player, enemy));
   }
 
-  gameLoop() {
+  gameLoop(time) {
     this._enemyList.forEach(enemy => {
-      enemy.gameLoop();
+      enemy.gameLoop(time);
     });
   }
 }
