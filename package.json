@@ -15,6 +15,7 @@
     "start:08": "parcel src/08-module/index.html",
     "start:09": "parcel src/09-multi-enemy/index.html",
     "start:10": "parcel src/10-enemy-container/index.html",
+    "start:11": "parcel src/11-tween/index.html",
     "clean": "npm-run-all clean:cache clean:dist",
     "clean:cache": "rimraf .cache",
     "clean:dist": "rimraf dist"
@@ -25,5 +26,10 @@
     "npm-run-all": "^4.1.2",
     "parcel-bundler": "^1.5.1",
     "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "@tweenjs/tween.js": "^17.2.0",
+    "install": "^0.11.0",
+    "npm": "^6.1.0"
   }
 }
