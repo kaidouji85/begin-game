@@ -3,7 +3,7 @@ import {PlayerView} from "./view";
 import {move} from './move';
 import {death} from "./death";
 import {Subject} from 'rxjs';
-import {distinctUntilChanged, map} from 'rxjs/operators';
+import {distinctUntilChanged, map, filter} from 'rxjs/operators';
 
 /** プレイヤー */
 export class Player {
@@ -16,19 +16,23 @@ export class Player {
     this.deathAnimationTween = new Group();
     this.view = new PlayerView();
 
-    this.touchInfoSubject = new Subject();
-    this.touchInfoSubject.pipe(
-      map(v => ({isTouch: v.isTouch, x: v.target.x, y: v.target.y})),
-      distinctUntilChanged((a, b) =>
-        a.isTouch === b.isTouch
-        && a.x === b.x
-        && a.y === b.y
-      )
-    ).subscribe(touchInfo => {
+    this.moveSubject = new Subject();
+    this.moveSubject.pipe(
+      filter(v => v.isTouch),
+      map(v => ({x: v.target.x, y: v.target.y})),
+      distinctUntilChanged((a, b) => a.x === b.x && a.y === b.y)
+    ).subscribe(v => {
       this.moveTween.removeAll();
-      if (touchInfo.isTouch) {
-        this._move(touchInfo.x, touchInfo.y);
-      }
+      this._move(v.x, v.y);
+    });
+
+    this.stopSubject = new Subject();
+    this.stopSubject.pipe(
+      map(v => v.isTouch),
+      distinctUntilChanged(),
+      filter(v => !v)
+    ).subscribe(() => {
+      this.moveTween.removeAll();
     });
   }
 
@@ -36,9 +40,8 @@ export class Player {
     this.moveTween.update(time);
     this.deathAnimationTween.update(time);
 
-    if (!this.isDeath) {
-      this.touchInfoSubject.next(touchInfo)
-    }
+    this.moveSubject.next(touchInfo);
+    this.stopSubject.next(touchInfo);
 
     this.view.engage(this);
   }
