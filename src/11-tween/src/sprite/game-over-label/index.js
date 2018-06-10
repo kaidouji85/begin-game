@@ -1,5 +1,6 @@
 import {Group, Tween} from '@tweenjs/tween.js';
 import {GameOverLabelView} from './view';
+import {visible} from "./visible";
 
 export class GameOverLabel {
   constructor() {
@@ -14,9 +15,7 @@ export class GameOverLabel {
   }
 
   visible() {
-    const tween = new Tween(this, this.tweenGroup);
-    tween.to({opacity: 1}, 3000)
-      .delay(1000);
+    const tween = visible(this, this.tweenGroup);
     tween.start();
   }
 }
