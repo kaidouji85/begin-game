@@ -2,20 +2,20 @@
 export class TouchInfo {
   constructor() {
     this.isTouch = false;
-    this.event = null;
+    this.target = {x: 0, y: 0};
 
     document.addEventListener('mousedown', e => {
       this.isTouch = true;
-      this.event = e;
+      this.target = {x: e.clientX, y: e.clientY};
     });
 
     document.addEventListener('mousemove', e => {
-      this.event = e;
+      this.target = {x: e.clientX, y: e.clientY};
     });
 
     document.addEventListener('mouseup', e => {
       this.isTouch = false;
-      this.event = e;
+      this.target = {x: e.clientX, y: e.clientY};
     });
   }
 }

@@ -2,6 +2,8 @@ import {Tween, Group} from "@tweenjs/tween.js";
 import {PlayerView} from "./view";
 import {move} from './move';
 import {death} from "./death";
+import {Subject} from 'rxjs';
+import {distinctUntilChanged, map} from 'rxjs/operators';
 
 /** プレイヤー */
 export class Player {
@@ -13,15 +15,29 @@ export class Player {
     this.moveTween = new Group();
     this.deathAnimationTween = new Group();
     this.view = new PlayerView();
+
+    this.touchInfoSubject = new Subject();
+    this.touchInfoSubject.pipe(
+      map(v => ({isTouch: v.isTouch, x: v.target.x, y: v.target.y})),
+      distinctUntilChanged((a, b) =>
+        a.isTouch === b.isTouch
+        && a.x === b.x
+        && a.y === b.y
+      )
+    ).subscribe(touchInfo => {
+      this.moveTween.removeAll();
+      if (touchInfo.isTouch) {
+        this._move(touchInfo.x, touchInfo.y);
+      }
+    });
   }
 
   gameLoop(time, touchInfo) {
     this.moveTween.update(time);
-    this.moveTween.removeAll();
     this.deathAnimationTween.update(time);
 
-    if (!this.isDeath && touchInfo.isTouch) {
-      this._move(touchInfo.event.clientX, touchInfo.event.clientY);
+    if (!this.isDeath) {
+      this.touchInfoSubject.next(touchInfo)
     }
 
     this.view.engage(this);
