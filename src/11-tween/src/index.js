@@ -7,7 +7,6 @@ import {GameOverLabel} from "./sprite/game-over-label/index";
 const player = new Player();
 const enemyContainer = new EnemyContainer();
 const gameOverLabel = new GameOverLabel();
-const touchInfo = new TouchInfo();
 let isTouch = false;
 
 document.addEventListener('mousedown', e => {
@@ -32,11 +31,11 @@ function gameLoop(time) {
 
   if (!player.isDeath && enemyContainer.isOverlap(player)) {
     player.isDeath = true;
-    player.deathAnimation();
+    player.death();
     gameOverLabel.visible();
   }
 
-  player.gameLoop(time, touchInfo);
+  player.gameLoop(time);
   enemyContainer.gameLoop(time);
   gameOverLabel.gameLoop(time);
 }

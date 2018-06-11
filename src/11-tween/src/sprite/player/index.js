@@ -14,24 +14,29 @@ export class Player {
 
     this.moveTween = new Group();
     this.onMoveTweenUpdated = null;
+
     this.deathAnimationTween = new Group();
+    this.onDeathAnimationTweenUpdated = null;
 
     this.view = new PlayerView();
   }
 
-  gameLoop(time, touchInfo) {
+  gameLoop(time) {
     this.moveTween.update(time);
     this.onMoveTweenUpdated && this.onMoveTweenUpdated();
     this.onMoveTweenUpdated = null;
 
     this.deathAnimationTween.update(time);
+    this.onDeathAnimationTweenUpdated && this.onDeathAnimationTweenUpdated();
+    this.onDeathAnimationTweenUpdated = null;
+
     this.view.engage(this);
   }
 
   move(targetX, targetY) {
     this.onMoveTweenUpdated = () => {
       this.moveTween.removeAll();
-      this.moveAnimation(targetX, targetY);
+      this.moveAnimation(targetX, targetY).start();
     };
   }
 
@@ -41,13 +46,17 @@ export class Player {
     };
   }
 
+  death() {
+    this.onDeathAnimationTweenUpdated = () => {
+      this.deathAnimation().start();
+    }
+  }
+
   deathAnimation() {
-    const tween = death(this, this.deathAnimationTween);
-    tween.start();
+    return death(this, this.deathAnimationTween);
   }
 
   moveAnimation(targetX, targetY) {
-    const tween = move(this, this.moveTween, targetX, targetY);
-    tween.start();
+    return move(this, this.moveTween, targetX, targetY);
   }
 }
