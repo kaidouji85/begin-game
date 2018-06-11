@@ -8,6 +8,23 @@ const player = new Player();
 const enemyContainer = new EnemyContainer();
 const gameOverLabel = new GameOverLabel();
 const touchInfo = new TouchInfo();
+let isTouch = false;
+
+document.addEventListener('mousedown', e => {
+  isTouch = true;
+  player.move(e.clientX, e.clientY);
+});
+
+document.addEventListener('mousemove', e => {
+  if (isTouch) {
+    player.move(e.clientX, e.clientY);
+  }
+});
+
+document.addEventListener('mouseup', e => {
+  isTouch = false;
+  player.stop();
+});
 
 // ゲームループ
 function gameLoop(time) {

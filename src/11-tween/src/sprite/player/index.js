@@ -2,8 +2,6 @@ import {Tween, Group} from "@tweenjs/tween.js";
 import {PlayerView} from "./view";
 import {move} from './move';
 import {death} from "./death";
-import {MoveChecker} from "./move-chekcer";
-import {StopChecker} from "./stop-checker";
 
 /** プレイヤー */
 export class Player {
@@ -12,30 +10,35 @@ export class Player {
     this.y = 128;
     this.opacity = 1;
     this.isDeath = false;
+
+
     this.moveTween = new Group();
+    this.onMoveTweenUpdated = null;
     this.deathAnimationTween = new Group();
+
     this.view = new PlayerView();
-
-     this.moveCheker = new MoveChecker({
-       shouldMove: (x, y) => {
-         this.moveTween.removeAll();
-         this.move(x, y);
-       }
-     });
-
-    this.stopChecker = new StopChecker({
-      shouldStop: () => this.moveTween.removeAll()
-    });
   }
 
   gameLoop(time, touchInfo) {
     this.moveTween.update(time);
+    this.onMoveTweenUpdated && this.onMoveTweenUpdated();
+    this.onMoveTweenUpdated = null;
+
     this.deathAnimationTween.update(time);
-
-    this.moveCheker.gameLoop(touchInfo);
-    this.stopChecker.gameLoop(touchInfo);
-
     this.view.engage(this);
+  }
+
+  move(targetX, targetY) {
+    this.onMoveTweenUpdated = () => {
+      this.moveTween.removeAll();
+      this.moveAnimation(targetX, targetY);
+    };
+  }
+
+  stop() {
+    this.onMoveTweenUpdated = () => {
+      this.moveTween.removeAll();
+    };
   }
 
   deathAnimation() {
@@ -43,7 +46,7 @@ export class Player {
     tween.start();
   }
 
-  move(targetX, targetY) {
+  moveAnimation(targetX, targetY) {
     const tween = move(this, this.moveTween, targetX, targetY);
     tween.start();
   }
