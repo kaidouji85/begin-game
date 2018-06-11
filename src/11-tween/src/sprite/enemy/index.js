@@ -6,14 +6,15 @@ export const ENEMY_SPEED = 4;
 
 /** 敵 */
 export class Enemy {
-  constructor(x, y) {
+  constructor(x, y, delay) {
     this.x = x;
     this.y = y;
     this.moveTween = new Group();
     this.view = new EnemyView();
 
     const tween = move(this, this.moveTween);
-    tween.start();
+    tween.delay(delay)
+      .start();
   }
 
   gameLoop(time) {

@@ -5,9 +5,9 @@ import {isOverlap} from "../overlap/is-overlap";
 export class EnemyContainer {
   constructor() {
     this._enemyList = [
-      new Enemy(window.innerWidth - 256, 128),
-      new Enemy(window.innerWidth - 256 + 512 * 1 , 128 + 128 * 1),
-      new Enemy(window.innerWidth - 256 + 512 * 2 , 128 + 128 * 2)
+      new Enemy(window.innerWidth + 512, 128, this._getDelay()),
+      new Enemy(window.innerWidth + 512 * 2 , 128 * 2, this._getDelay()),
+      new Enemy(window.innerWidth + 512 * 3 , 128 * 3, this._getDelay())
     ];
   }
 
@@ -19,5 +19,9 @@ export class EnemyContainer {
     this._enemyList.forEach(enemy => {
       enemy.gameLoop(time);
     });
+  }
+
+  _getDelay() {
+    return Math.random() * 3000;
   }
 }
