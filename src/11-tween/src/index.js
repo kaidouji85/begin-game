@@ -1,6 +1,5 @@
 // ベクトル関係
 import {Player} from "./sprite/player/index.js";
-import {TouchInfo} from "./touch/touch-info";
 import {EnemyContainer} from "./enemy-container/enemy-container";
 import {GameOverLabel} from "./sprite/game-over-label/index";
 
